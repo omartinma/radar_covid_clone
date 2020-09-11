@@ -35,7 +35,7 @@ class _ExposureImage extends StatelessWidget {
           children: [
             Positioned.fill(
               child: Image.asset(
-                "assets/images/exposition_home_background.png",
+                "assets/images/exposure_home_background.png",
                 width: context.width,
               ),
             ),
@@ -44,7 +44,7 @@ class _ExposureImage extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 70),
                 child: Image.asset(
-                  "assets/images/exposition_home_image.png",
+                  "assets/images/exposure_home_image.png",
                   width: context.width,
                 ),
               ),
