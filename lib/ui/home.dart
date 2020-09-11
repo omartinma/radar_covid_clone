@@ -11,10 +11,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetX<HomeController>(
+      body: GetBuilder<HomeController>(
         builder: (homeController) {
           return IndexedStack(
-            index: homeController.indexSelected.value,
+            index: homeController.indexSelected,
             children: [
               ExpositionScreen(),
               PrivacyScreen(),
@@ -60,14 +60,15 @@ class __BottomAppBarState extends State<_BottomAppBar> {
         ),
         child: Padding(
           padding: const EdgeInsets.only(right: 15, left: 15),
-          child: GetX<HomeController>(
+          child: GetBuilder<HomeController>(
             builder: (controller) => BottomNavigationBar(
               backgroundColor: Colors.white,
+              unselectedItemColor: Colors.grey.shade400,
               elevation: 0,
               onTap: (value) {
                 controller.setIndex(value);
               },
-              currentIndex: controller.indexSelected.value,
+              currentIndex: controller.indexSelected,
               items: [
                 BottomNavigationBarItem(
                   icon:
