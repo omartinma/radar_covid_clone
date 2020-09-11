@@ -3,16 +3,16 @@ import 'package:get/get.dart';
 import 'package:radar_covid_clone/ui/common/button_with_background_image.dart';
 import 'package:radar_covid_clone/ui/common/container_with_background_image.dart';
 
-class ExpositionScreen extends StatelessWidget {
-  const ExpositionScreen({Key key}) : super(key: key);
+class ExposureScreen extends StatelessWidget {
+  const ExposureScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
-          _ExpositionImage(),
-          _ExpostionButtonInformation(),
+          _ExposureImage(),
+          _ExposureButtonInformation(),
           _RadarContainer(),
           Spacer(),
           ButtonWithBackgroundImage(),
@@ -22,8 +22,8 @@ class ExpositionScreen extends StatelessWidget {
   }
 }
 
-class _ExpositionImage extends StatelessWidget {
-  const _ExpositionImage({Key key}) : super(key: key);
+class _ExposureImage extends StatelessWidget {
+  const _ExposureImage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,22 +56,22 @@ class _ExpositionImage extends StatelessWidget {
   }
 }
 
-class _ExpostionButtonInformation extends StatelessWidget {
-  const _ExpostionButtonInformation({Key key}) : super(key: key);
+class _ExposureButtonInformation extends StatelessWidget {
+  const _ExposureButtonInformation({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       transform: Matrix4.translationValues(0.0, -20.0, 0.0),
       child: ContainerWithBackgroundImage(
-        backgroundImage: "assets/images/exposition_low_background.png",
+        backgroundImage: "assets/images/exposure_low_background.png",
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Exposicion baja",
+                  "Exposición baja",
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 20,

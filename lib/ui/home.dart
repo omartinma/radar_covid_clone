@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radar_covid_clone/core/controllers/home_controller.dart';
-import 'package:radar_covid_clone/ui/exposition/exposition_screen.dart';
+import 'package:radar_covid_clone/ui/exposure/exposure_screen.dart';
 import 'package:radar_covid_clone/ui/more_info/more_info_screen.dart';
 import 'package:radar_covid_clone/ui/privacy/privacy_screen.dart';
 
@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
           return IndexedStack(
             index: homeController.indexSelected,
             children: [
-              ExpositionScreen(),
+              ExposureScreen(),
               PrivacyScreen(),
               MoreInfoScreen(),
             ],
