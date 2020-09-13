@@ -5,6 +5,7 @@ import 'package:radar_covid_clone/core/controllers/home_controller.dart';
 import 'package:radar_covid_clone/ui/home.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   setupControllers();
   setupServices();
   runApp(MyApp());

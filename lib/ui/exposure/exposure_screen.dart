@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radar_covid_clone/colors.dart';
 import 'package:radar_covid_clone/core/controllers/exposure_controller.dart';
 import 'package:radar_covid_clone/core/models/exposure.dart';
 import 'package:radar_covid_clone/ui/common/button_with_background_image.dart';
@@ -29,31 +30,46 @@ class _ExposureImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        alignment: Alignment.center,
-        height: context.height * 0.38,
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: Image.asset(
-                "assets/images/exposure_home_background.png",
-                width: context.width,
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 70),
-                child: Image.asset(
-                  "assets/images/exposure_home_image.png",
-                  width: context.width,
+    return GetX<ExposureController>(
+      builder: (controller) {
+        return SafeArea(
+          child: Container(
+            alignment: Alignment.center,
+            height: context.height * 0.38,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: Image.asset(
+                    "assets/images/exposure_home_background.png",
+                    width: context.width,
+                    color: controller.isRadarActive.value
+                        ? null
+                        : AppColors.disableImage,
+                  ),
                 ),
-              ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ColorFiltered(
+                    colorFilter: controller.isRadarActive.value
+                        ? ColorFilter.mode(
+                            Colors.transparent,
+                            BlendMode.color,
+                          )
+                        : AppColors.greyScale,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 70),
+                      child: Image.asset(
+                        "assets/images/exposure_home_image.png",
+                        width: context.width,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -141,38 +157,53 @@ class _RadarContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ContainerWithBackgroundImage(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return GetX<ExposureController>(
+      builder: (controller) {
+        return ContainerWithBackgroundImage(
+          child: Column(
             children: [
-              Text(
-                "Radar COVID activo",
-                style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 20,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Radar COVID " +
+                        (controller.isRadarActive.value
+                            ? "activo"
+                            : "inactivo"),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Transform.scale(
+                    scale: 0.8,
+                    child: Switch.adaptive(
+                        value: controller.isRadarActive.value,
+                        inactiveTrackColor: AppColors.customRed,
+                        onChanged: (value) {
+                          controller.changeRadarActive();
+                        }),
+                  )
+                ],
               ),
-              Transform.scale(
-                scale: 0.8,
-                child: Switch.adaptive(
-                    value: true,
-                    onChanged: (value) {
-                      print("changed");
-                    }),
-              )
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                controller.isRadarActive.value
+                    ? "Las interacciones con móviles cercanos se registrarán siempre anónimamente."
+                    : "Por favor, activa esta opción para que la aplicación funcione",
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                    color: controller.isRadarActive.value
+                        ? Colors.black
+                        : AppColors.customRed),
+              ),
             ],
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            "Las interacciones con móviles cercanos se registrarán siempre anónimamente.",
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
