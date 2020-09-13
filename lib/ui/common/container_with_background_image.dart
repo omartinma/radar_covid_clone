@@ -4,7 +4,7 @@ class ContainerWithBackgroundImage extends StatelessWidget {
   const ContainerWithBackgroundImage({
     Key key,
     @required this.child,
-    this.backgroundImage = "assets/images/white_rectangle_background.png",
+    this.backgroundImage,
   }) : super(key: key);
 
   final Widget child;
@@ -16,7 +16,8 @@ class ContainerWithBackgroundImage extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(backgroundImage),
+              image: AssetImage(backgroundImage ??
+                  "assets/images/white_rectangle_background.png"),
               fit: BoxFit.fill,
             ),
           ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radar_covid_clone/core/controllers/exposure_controller.dart';
+import 'package:radar_covid_clone/core/models/exposure.dart';
 import 'package:radar_covid_clone/ui/common/button_with_background_image.dart';
 import 'package:radar_covid_clone/ui/common/container_with_background_image.dart';
 
@@ -61,38 +63,75 @@ class _ExposureButtonInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      transform: Matrix4.translationValues(0.0, -20.0, 0.0),
-      child: ContainerWithBackgroundImage(
-        backgroundImage: "assets/images/exposure_low_background.png",
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Exposición baja",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20,
-                      color: Color.fromARGB(255, 88, 176, 106)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Icon(Icons.arrow_forward),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Te informaremos en el caso de un posible contacto de riesgo",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
-            ),
-          ],
-        ),
-      ),
+    return GetX<ExposureController>(
+      builder: (exposureController) {
+        var child;
+        String backgroundImage;
+        if (exposureController.exposure.value.exposureLevel == null) {
+          child = Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(vertical: 15),
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          Color color;
+          String expositionMessage;
+          switch (exposureController.exposure.value.exposureLevel) {
+            case ExposureLevel.HIGH:
+              backgroundImage = "assets/images/exposure_high_background.png";
+              color = Colors.red;
+              expositionMessage = "alta";
+              break;
+            case ExposureLevel.MEDIUM:
+              backgroundImage = "assets/images/exposure_medium_background.png";
+              color = Colors.orange;
+              expositionMessage = "media";
+              break;
+            case ExposureLevel.LOW:
+              backgroundImage = "assets/images/exposure_low_background.png";
+              color = Color.fromARGB(255, 88, 176, 106);
+              expositionMessage = "baja";
+              break;
+            default:
+          }
+          child = Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Exposición $expositionMessage",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                        color: color),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Icon(Icons.arrow_forward),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Te informaremos en el caso de un posible contacto de riesgo",
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+              ),
+            ],
+          );
+        }
+
+        return Container(
+          height: 120,
+          transform: Matrix4.translationValues(0.0, -20.0, 0.0),
+          child: ContainerWithBackgroundImage(
+            backgroundImage: backgroundImage,
+            child: child,
+          ),
+        );
+      },
     );
   }
 }
