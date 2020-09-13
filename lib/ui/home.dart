@@ -40,53 +40,50 @@ class _BottomAppBar extends StatefulWidget {
 class __BottomAppBarState extends State<_BottomAppBar> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        height: 70,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 4,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
+    return Container(
+      height: 70,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
         ),
-        child: Padding(
-          padding: const EdgeInsets.only(right: 15, left: 15),
-          child: GetBuilder<HomeController>(
-            builder: (controller) => BottomNavigationBar(
-              backgroundColor: Colors.white,
-              unselectedItemColor: Colors.grey.shade400,
-              elevation: 0,
-              onTap: (value) {
-                controller.setIndex(value);
-              },
-              currentIndex: controller.indexSelected,
-              items: [
-                BottomNavigationBarItem(
-                  icon:
-                      ImageIcon(AssetImage("assets/images/home_menu_icon.png")),
-                  title: Container(),
-                ),
-                BottomNavigationBarItem(
-                  icon: ImageIcon(
-                      AssetImage("assets/images/privacy_menu_icon.png")),
-                  title: Container(),
-                ),
-                BottomNavigationBarItem(
-                  icon: ImageIcon(
-                      AssetImage("assets/images/more_info_menu_icon.png")),
-                  title: Container(),
-                ),
-              ],
-            ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 4,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(right: 15, left: 15),
+        child: GetBuilder<HomeController>(
+          builder: (controller) => BottomNavigationBar(
+            backgroundColor: Colors.white,
+            unselectedItemColor: Colors.grey.shade400,
+            elevation: 0,
+            onTap: (value) {
+              controller.setIndex(value);
+            },
+            currentIndex: controller.indexSelected,
+            items: [
+              BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage("assets/images/home_menu_icon.png")),
+                title: Container(),
+              ),
+              BottomNavigationBarItem(
+                icon: ImageIcon(
+                    AssetImage("assets/images/privacy_menu_icon.png")),
+                title: Container(),
+              ),
+              BottomNavigationBarItem(
+                icon: ImageIcon(
+                    AssetImage("assets/images/more_info_menu_icon.png")),
+                title: Container(),
+              ),
+            ],
           ),
         ),
       ),
