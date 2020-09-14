@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
 import 'package:radar_covid_clone/colors.dart';
 import 'package:radar_covid_clone/core/controllers/exposure_controller.dart';
 import 'package:radar_covid_clone/core/models/exposure.dart';
 import 'package:radar_covid_clone/ui/common/button_with_background_image.dart';
 import 'package:radar_covid_clone/ui/common/container_with_background_image.dart';
+import 'package:radar_covid_clone/ui/send_diagnostic/send_diagnostic_screen.dart';
 
 class ExposureScreen extends StatelessWidget {
   const ExposureScreen({Key key}) : super(key: key);
@@ -18,7 +20,15 @@ class ExposureScreen extends StatelessWidget {
           _ExposureButtonInformation(),
           _RadarContainer(),
           Spacer(),
-          ButtonWithBackgroundImage(),
+          ButtonWithBackgroundImage(onTap: () {
+            /*Navigator.of(context).push(
+                MaterialPageRoute(builder: (c) => SendDiagnosticScreen()));*/
+            Get.to(
+              SendDiagnosticScreen(),
+              duration: Duration(milliseconds: 100),
+              transition: Transition.native,
+            );
+          }),
         ],
       ),
     );

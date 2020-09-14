@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ButtonWithBackgroundImage extends StatelessWidget {
-  const ButtonWithBackgroundImage({Key key}) : super(key: key);
+  const ButtonWithBackgroundImage({
+    Key key,
+    this.onTap,
+  }) : super(key: key);
 
   final String imageName = "assets/images/button_background.png";
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class ButtonWithBackgroundImage extends StatelessWidget {
           ),
         ),
         child: InkWell(
-          onTap: () => print(""),
+          onTap: onTap,
           child: Container(
             height: 40,
             child: Center(
