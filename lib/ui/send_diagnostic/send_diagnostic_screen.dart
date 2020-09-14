@@ -1,4 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:radar_covid_clone/colors.dart';
+import 'package:radar_covid_clone/core/controllers/diagnostic_controller.dart';
 import 'package:radar_covid_clone/text_styles.dart';
 
 class SendDiagnosticScreen extends StatelessWidget {
@@ -7,10 +12,10 @@ class SendDiagnosticScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.backgroundColor,
         iconTheme: IconThemeData(
           color: Colors.black, //change your color here
         ),
@@ -109,10 +114,98 @@ class SendDiagnosticScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              _DiagnosticCodeInput(),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _DiagnosticCodeInput extends StatelessWidget {
+  const _DiagnosticCodeInput({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var list = Get.find<DiagnosticController>().inputList;
+    List<FocusNode> _focusNodes =
+        List<FocusNode>.generate(list.length, (int index) => FocusNode());
+
+    List<Widget> textFields = List<Widget>.generate(
+        list.length,
+        (int index) => _DigitInput(
+              focusNode: _focusNodes[index],
+              onSubmitted: (String value) {
+                if (index < list.length - 1) {
+                  _focusNodes[index + 1].requestFocus();
+                } else {
+                  WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+                }
+              },
+            ));
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: textFields,
+      ),
+    );
+  }
+}
+
+class _DigitInput extends StatelessWidget {
+  const _DigitInput({
+    Key key,
+    this.digit,
+    this.focusNode,
+    this.onSubmitted,
+  }) : super(key: key);
+
+  final String digit;
+  final FocusNode focusNode;
+  final ValueChanged<String> onSubmitted;
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: new Container(
+        alignment: Alignment.center,
+        height: 35,
+        margin: const EdgeInsets.only(right: 3),
+        child: TextField(
+          cursorWidth: 1,
+          showCursor: true,
+          maxLength: 1,
+          focusNode: focusNode,
+          onSubmitted: onSubmitted,
+          buildCounter: (context, {currentLength, isFocused, maxLength}) {
+            return SizedBox(
+              height: 0,
+              width: 0,
+            );
+          },
+          maxLengthEnforced: true,
+          textInputAction: TextInputAction.next,
+          textAlign: TextAlign.center,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+          ),
+          style: TextStyle(
+            fontSize: 10.0,
+            color: Colors.black,
+          ),
+        ),
+        decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(0.2),
+            borderRadius: BorderRadius.all(Radius.circular(6))),
       ),
     );
   }

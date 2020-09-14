@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radar_covid_clone/core/controllers/diagnostic_controller.dart';
 import 'package:radar_covid_clone/core/controllers/exposure_controller.dart';
 import 'package:radar_covid_clone/core/controllers/home_controller.dart';
 import 'package:radar_covid_clone/ui/home.dart';
@@ -14,6 +15,7 @@ void main() {
 setupControllers() {
   Get.put(HomeController());
   Get.put(ExposureController());
+  Get.put(DiagnosticController());
 }
 
 setupServices() {}
