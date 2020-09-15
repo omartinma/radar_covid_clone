@@ -21,6 +21,9 @@ class SendDiagnosticScreen extends StatelessWidget {
             return PlatformDialog();
           },
         );
+        if (result) {
+          Get.find<DiagnosticController>().resetCode();
+        }
         return result;
       },
       child: Scaffold(
