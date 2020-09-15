@@ -17,7 +17,9 @@ class ButtonWithBackgroundImage extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
           image: DecorationImage(
-            image: AssetImage("assets/images/button_background.png"),
+            image: AssetImage(onTap == null
+                ? "assets/images/button_disabled_background.png"
+                : "assets/images/button_background.png"),
             fit: BoxFit.fill,
           ),
         ),
