@@ -24,15 +24,17 @@ class ExposureScreen extends StatelessWidget {
             Flexible(
               child: const SizedBox.expand(),
             ),
-            ButtonWithBackgroundImage(onTap: () {
-              /*Navigator.of(context).push(
+            ButtonWithBackgroundImage(
+              onTap: () {
+                /*Navigator.of(context).push(
                   MaterialPageRoute(builder: (c) => SendDiagnosticScreen()));*/
-              Get.to(
-                SendDiagnosticScreen(),
-                duration: Duration(milliseconds: 100),
-                transition: Transition.native,
-              );
-            }),
+                Get.to(
+                  SendDiagnosticScreen(),
+                  duration: Duration(milliseconds: 100),
+                  transition: Transition.native,
+                );
+              },
+            ),
           ],
         ),
       ),
