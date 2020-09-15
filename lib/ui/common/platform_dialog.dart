@@ -11,7 +11,7 @@ class PlatformDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var title = Text("¿seguro que no quieres enviar tu diagnóstico?");
+    var title = Text("¿Seguro que no quieres enviar tu diagnóstico?");
     var ok = Text("OK");
     var okAction = () => Get.back(result: true);
     var cancel = Text("Cancelar");
@@ -39,12 +39,9 @@ class PlatformDialog extends StatelessWidget {
                 child: ClipRRect(
                   child: Container(
                     child: ok,
-                    width: 100,
-                    color: Colors.blue,
                   ),
                 ),
                 onPressed: okAction,
-                textStyle: TextStyle(backgroundColor: Colors.amber),
               ),
               CupertinoDialogAction(
                 child: cancel,
