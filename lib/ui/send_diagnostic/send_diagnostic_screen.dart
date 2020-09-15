@@ -182,6 +182,7 @@ class _DigitInput extends StatelessWidget {
         margin: const EdgeInsets.only(right: 3),
         child: TextField(
           cursorWidth: 1,
+          autofocus: true,
           showCursor: true,
           maxLength: 1,
           focusNode: focusNode,

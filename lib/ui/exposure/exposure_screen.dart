@@ -13,23 +13,28 @@ class ExposureScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          _ExposureImage(),
-          _ExposureButtonInformation(),
-          _RadarContainer(),
-          Spacer(),
-          ButtonWithBackgroundImage(onTap: () {
-            /*Navigator.of(context).push(
-                MaterialPageRoute(builder: (c) => SendDiagnosticScreen()));*/
-            Get.to(
-              SendDiagnosticScreen(),
-              duration: Duration(milliseconds: 100),
-              transition: Transition.native,
-            );
-          }),
-        ],
+    return SingleChildScrollView(
+      child: Container(
+        height: context.height - 70,
+        child: Column(
+          children: [
+            _ExposureImage(),
+            _ExposureButtonInformation(),
+            _RadarContainer(),
+            Flexible(
+              child: const SizedBox.expand(),
+            ),
+            ButtonWithBackgroundImage(onTap: () {
+              /*Navigator.of(context).push(
+                  MaterialPageRoute(builder: (c) => SendDiagnosticScreen()));*/
+              Get.to(
+                SendDiagnosticScreen(),
+                duration: Duration(milliseconds: 100),
+                transition: Transition.native,
+              );
+            }),
+          ],
+        ),
       ),
     );
   }
