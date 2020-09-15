@@ -12,22 +12,21 @@ class ContainerWithBackgroundImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(backgroundImage ??
-                  "assets/images/white_rectangle_background.png"),
-              fit: BoxFit.fill,
-            ),
-          ),
-          padding: const EdgeInsets.only(
-            left: 15,
-            right: 10,
-            top: 15,
-            bottom: 15,
-          ),
-          child: child,
-        ));
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(backgroundImage ??
+              "assets/images/white_rectangle_background.png"),
+          fit: BoxFit.fill,
+        ),
+      ),
+      padding: const EdgeInsets.only(
+        left: 15,
+        right: 10,
+        top: 15,
+        bottom: 15,
+      ),
+      child: child,
+    ));
   }
 }

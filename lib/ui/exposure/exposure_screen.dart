@@ -16,6 +16,7 @@ class ExposureScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         height: context.height - 70,
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
             _ExposureImage(),
@@ -24,16 +25,20 @@ class ExposureScreen extends StatelessWidget {
             Flexible(
               child: const SizedBox.expand(),
             ),
-            ButtonWithBackgroundImage(
-              onTap: () {
-                /*Navigator.of(context).push(
-                  MaterialPageRoute(builder: (c) => SendDiagnosticScreen()));*/
-                Get.to(
-                  SendDiagnosticScreen(),
-                  duration: Duration(milliseconds: 100),
-                  transition: Transition.native,
-                );
-              },
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5),
+              child: ButtonWithBackgroundImage(
+                text: "Comunica tu positivo COVID-19",
+                onTap: () {
+                  /*Navigator.of(context).push(
+                    MaterialPageRoute(builder: (c) => SendDiagnosticScreen()));*/
+                  Get.to(
+                    SendDiagnosticScreen(),
+                    duration: Duration(milliseconds: 100),
+                    transition: Transition.native,
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -74,7 +79,7 @@ class _ExposureImage extends StatelessWidget {
                           )
                         : AppColors.greyScale,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 70),
+                      padding: const EdgeInsets.symmetric(horizontal: 55),
                       child: Image.asset(
                         "assets/images/exposure_home_image.png",
                         width: context.width,

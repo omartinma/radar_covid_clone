@@ -6,14 +6,13 @@ import 'package:radar_covid_clone/core/services/exposure_service.dart';
 class ExposureController extends GetxController {
   final exposure = Exposure().obs;
   final isRadarActive = true.obs;
+  ExposureService exposureService = Get.put(ExposureService());
 
   @override
   onInit() async {
     isRadarActive.value = await exposureService.isRadarActive();
     exposure.value = await exposureService.getExposure();
   }
-
-  ExposureService exposureService = Get.put(ExposureService());
 
   changeRadarActive() async {
     isRadarActive.value = !isRadarActive.value;

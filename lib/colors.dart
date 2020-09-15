@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  static Color primary = Color.fromRGBO(138, 124, 183, 1);
   static Color customRed = Color.fromRGBO(224, 108, 87, 1);
   static Color disableImage = Colors.grey;
   static Color backgroundColor = Color.fromRGBO(250, 249, 247, 1);

@@ -132,7 +132,7 @@ class SendDiagnosticScreen extends StatelessWidget {
                 ),
                 _DiagnosticCodeInput(),
                 SizedBox(
-                  height: 100,
+                  height: 50,
                 ),
                 _SendDiagnosticButton(),
               ],
@@ -259,6 +259,7 @@ class __SendDiagnosticButtonState extends State<_SendDiagnosticButton> {
     return GetX<DiagnosticController>(
       builder: (controller) {
         return ButtonWithBackgroundImage(
+          text: "Enviar diagnóstico anónimo",
           onTap: controller.sendEnabled.value
               ? () {
                   //Send diagnostic
